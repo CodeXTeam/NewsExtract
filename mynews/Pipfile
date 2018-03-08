@@ -11,6 +11,9 @@ django = "==1.11.2"
 celery = "==4.0.2"
 redis = "*"
 django-celery-results = "*"
+jieba = "*"
+feedparser = "*"
+numpy = "*"
 
 
 [dev-packages]

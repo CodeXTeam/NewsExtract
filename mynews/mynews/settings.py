@@ -25,7 +25,7 @@ SECRET_KEY = 'ghxwc8!03y%1_5o#=ovn(g2*q2x8zh(=5v7on@ep38l#=)erhr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','.writeathink.cn']
 
 
 # Application definition

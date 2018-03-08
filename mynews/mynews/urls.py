@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from app1.views import home
+from newsbeat.views import home
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='home'),
-    url('^app1/', include('app1.urls', namespace='app1', app_name='app1'))
+    url('^news/', include('newsbeat.urls', namespace='newsbeat', app_name='newsbeat'))
 ]

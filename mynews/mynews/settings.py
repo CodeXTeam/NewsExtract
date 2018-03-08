@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app1',
-    'app2',
+    'newsbeat',
     'django_celery_results'
 ]
 
@@ -134,12 +133,8 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERY_BEAT_SCHEDULE = {
-    'task-number-one': {
-        'task': 'app1.tasks.task_number_one',
-        'schedule': crontab(minute='*/2')
-    },
-    'task-number-two': {
-        'task': 'app2.tasks.task_number_two',
-        'schedule': crontab(minute='*', hour='*/3,10-19')
+    'task_news': {
+        'task': 'newsbeat.tasks.task_news',
+        'schedule': crontab(minute='1', hour='8-22/1')
     }
 }

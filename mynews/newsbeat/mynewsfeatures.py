@@ -144,3 +144,44 @@ def showarticles(titles, toppatterns, patternnames, out='myarticles.txt'):
                           str(patternnames[toppatterns[j][i][1]]) + '\n')
         outfile.write('\n')
     outfile.close()
+
+
+def get_features(weight, feature, titles, wordvec):
+    """显示特征"""
+    out = ''  # 返回结果
+    pc, wc = np.shape(feature)  # pc 特征数，wc 词向量维数
+    toppatterns = [[] for i in range(len(titles))]
+    patternnames = []
+
+    # 遍历所有特征
+    for i in range(pc):
+        slist = []
+        # 构造一个包含单词及其权重数据的列表
+        for j in range(wc):
+            slist.append((feature[i, j], wordvec[j]))
+        # 将单词列表倒序排列
+        slist.sort(reverse=True)
+
+        # 打印权重最高的10个词
+        topwords_num = 10
+        words = [s[1] for s in slist[:topwords_num]]
+        out += (str(words) + '\n')
+        patternnames.append(words)
+
+        # 构造一个针对该特征的文章列表
+        flist = []
+        for j, title in enumerate(titles):
+            # 加入文章及其权重数据
+            flist.append((weight[j, i], title))
+            toppatterns[j].append((weight[j, i], i, title))
+
+        # Reverse sort the list
+        flist.sort(reverse=True)
+
+        # Show the top 5 articles
+        toparticle_num = 5
+        for article in flist[:toparticle_num]:
+            out += (str(article) + '\n')
+        out += '\n'
+    # Return the pattern names for later use
+    return out

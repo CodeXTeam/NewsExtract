@@ -24,7 +24,6 @@ class DjangoCeleryResultsTaskresult(models.Model):
 from django.shortcuts import render
 from django.views.generic import ListView
 # Create your views here.
-from .tasks import task_number_one
 from django.http import HttpResponse
 from django_celery_results.models import TaskResult
 

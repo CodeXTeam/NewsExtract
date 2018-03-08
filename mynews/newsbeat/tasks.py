@@ -6,5 +6,6 @@ from news_main import main
 @shared_task
 def task_news():
     print('running task_news.')
-    return main()
+    result =  main()
+    return result
    

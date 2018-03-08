@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     # news_matrics
     news_matrics = np.matrix(word_matrix) # 矩阵化
-    w, h = mynnmf.factorize(news_matrics, k=20, maxiter=100) # k是期望特征数
+    w, h = mynnmf.factorize(news_matrics, k=20, maxiter=50) # k是期望特征数
 
     top_patterns, pattern_names = showfeatures(w, h, article_titles, word_vec, out='myfeatures.txt')
 

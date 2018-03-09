@@ -170,8 +170,8 @@ def get_features(weight, feature, titles, wordvec):
         # 打印权重最高的10个词
         topwords_num = 10
         words = [s[1] for s in slist[:topwords_num]]
-        feature = ','.join(words)
-        out[i]['feature'] = feature
+        feature_words = ','.join(words)
+        out[i]['feature'] = feature_words
 
         patternnames.append(words)
 

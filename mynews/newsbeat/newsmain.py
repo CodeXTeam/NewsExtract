@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from newsbeat.mynewsfeatures import getarticlewords, makematrix, showarticles, showfeatures, get_features
-from . import mynnmf
+from newsbeat import mynnmf
 import numpy as np
 
 

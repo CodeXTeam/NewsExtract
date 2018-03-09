@@ -103,8 +103,8 @@ def showfeatures(weight, feature, titles, wordvec, out='myfeatures.txt'):
         # 将单词列表倒序排列
         slist.sort(reverse=True)
 
-        # 打印权重最高的10个词
-        topwords_num = 10
+        # 打印权重最高的6个词
+        topwords_num = 6
         words = [s[1] for s in slist[:topwords_num]]
         outfile.write(str(words) + '\n')
         patternnames.append(words)
@@ -150,8 +150,55 @@ def showarticles(titles, toppatterns, patternnames, out='myarticles.txt'):
 
 def get_features(weight, feature, titles, wordvec):
     """显示特征"""
-    out = {}  # 返回结果
-    # out = []
+    out = []  # 返回结果
+    pc, wc = np.shape(feature)  # pc 特征数，wc 词向量维数
+    toppatterns = [[] for i in range(len(titles))]
+    patternnames = []
+
+    # 遍历所有特征
+    for i in range(pc):
+        out.append({})  # 每个topic一个结果字典
+        out[i]['id'] = i #每个结果的id
+
+        slist = []
+        # 构造一个包含单词及其权重数据的列表
+        for j in range(wc):
+            slist.append((feature[i, j], wordvec[j]))
+        # 将单词列表倒序排列
+        slist.sort(reverse=True)
+
+        # 打印权重最高的6个词
+        topwords_num = 6
+        words = [s[1] for s in slist[:topwords_num]]
+        feature_words = ','.join(words)
+        out[i]['feature'] = feature_words
+
+        patternnames.append(words)
+
+        # 构造一个针对该特征的文章列表
+        flist = []
+        for j, title in enumerate(titles):
+            # 加入文章及其权重数据
+            flist.append((weight[j, i], title))
+            toppatterns[j].append((weight[j, i], i, title))
+
+        # Reverse sort the list
+        flist.sort(reverse=True)
+
+        # Show the top 5 articles
+        toparticle_num = 5
+        articles = []
+        for article in flist[:toparticle_num]:
+            articles.append('{}: {}'.format(*article))
+        out[i]['related_articles'] = articles
+    # Return the pattern names for later use
+    return out
+
+def get_features1(weight, feature, titles, wordvec):
+    """返回字符串给django -html"""
+    # out = {}  # 返回结果
+    out = {}
+    out_str = []
     pc, wc = np.shape(feature)  # pc 特征数，wc 词向量维数
     toppatterns = [[] for i in range(len(titles))]
     patternnames = []
@@ -170,9 +217,9 @@ def get_features(weight, feature, titles, wordvec):
 
         # 打印权重最高的10个词
         topwords_num = 10
-        words = [s[1] for s in slist[:topwords_num]]
+        words = [str(s[1]) for s in slist[:topwords_num]]
         feature_words = ','.join(words)
-        # out[i]['feature'] = feature_words
+        out[i]['feature'] = feature_words
         
 
         patternnames.append(words)
@@ -192,8 +239,12 @@ def get_features(weight, feature, titles, wordvec):
         articles = {}
         for index, article in enumerate(flist[:toparticle_num], start=1):
             key = str(index)
-            articles[key] = '{}: {}'.format(*article)
+            articles[key] = '{}: {}'.format(article[0], str(article[1]))
         # out[i]['related_articles'] = articles
         out[feature_words] = articles
+        #topic_sum = '<br/ >'.join((feature_words, *articles.values()))
+        #out_str.append(topic_sum)
+    
     # Return the pattern names for later use
+    # return '<br/ ><br />'.join(out_str)
     return out

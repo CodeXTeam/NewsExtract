@@ -3,12 +3,9 @@
 
     {% for info in infos %}
     <div>
-        {% for topic, articles in info.result %}
-            <h3>{{ topic }}</h3>
-            {% for id, article in topic %}
-                <p>{{id}} - {{ article }}</p>
-            {% endfor %}
-        {% endfor %}
+        {{ info.date_done }} - {{ info.status }}
+        <br/>
+        {{ info.result }}
     </div>
     <br/ >
     {% endfor %}

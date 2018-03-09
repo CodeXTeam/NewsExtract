@@ -150,13 +150,16 @@ def showarticles(titles, toppatterns, patternnames, out='myarticles.txt'):
 
 def get_features(weight, feature, titles, wordvec):
     """显示特征"""
-    out = ''  # 返回结果
+    out = []  # 返回结果
     pc, wc = np.shape(feature)  # pc 特征数，wc 词向量维数
     toppatterns = [[] for i in range(len(titles))]
     patternnames = []
 
     # 遍历所有特征
     for i in range(pc):
+        out.append({})  # 每个topic一个结果字典
+        out[i]['id'] = i #每个结果的id
+
         slist = []
         # 构造一个包含单词及其权重数据的列表
         for j in range(wc):
@@ -167,7 +170,9 @@ def get_features(weight, feature, titles, wordvec):
         # 打印权重最高的10个词
         topwords_num = 10
         words = [s[1] for s in slist[:topwords_num]]
-        out += (str(words) + '\n')
+        feature = ','.join(words)
+        out[i]['feature'] = feature
+
         patternnames.append(words)
 
         # 构造一个针对该特征的文章列表
@@ -182,8 +187,9 @@ def get_features(weight, feature, titles, wordvec):
 
         # Show the top 5 articles
         toparticle_num = 5
+        articles = []
         for article in flist[:toparticle_num]:
-            out += (str(article) + '\n')
-        out += '\n'
+            articles.append('{}: {}'.format(*article))
+        out[i]['related_articles'] = articles
     # Return the pattern names for later use
-    return out
+    return {'data': out}

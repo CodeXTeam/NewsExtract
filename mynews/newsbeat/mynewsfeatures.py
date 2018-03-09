@@ -2,11 +2,12 @@
 """
 搜集新闻源，并将各文章里出现的词转换成数字矩阵
 """
-
+import os
 import re
 import feedparser
 import jieba
 import numpy as np
+
 
 PUNCT = set(u''':!),.:;?>]}¢'"、。〉》」』】〕〗〞︰︱︳﹐､﹒
 ﹔﹕﹖﹗﹚﹜﹞！）/<$&#@，．：；？｜｝︴︶︸︺︼︾﹀﹂﹄﹏､～￠
@@ -24,7 +25,8 @@ FEEDLIST = [
     'http://news.163.com/special/00011K6L/rss_newsattitude.xml'
 ]
 
-STOP_WORDS = {line.strip() for line in open('stop_words.txt', encoding='utf-8').readlines()}
+STOP_WORDS_FILE = os.path.join(os.path.dirname(__file__), 'stop_words.txt')
+STOP_WORDS = {line.strip() for line in open(STOP_WORDS_FILE, encoding='utf-8').readlines()}
 
 # TFIDF
 # jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())
@@ -33,7 +35,7 @@ STOP_WORDS = {line.strip() for line in open('stop_words.txt', encoding='utf-8').
 def separatewords(text):
     """分词"""
     seg_list = jieba.cut(text)
-    return [word.lower() for word in seg_list if word not in STOP_WORDS ]
+    return (word.lower() for word in seg_list if word not in STOP_WORDS)
 
 
 def getarticlewords():

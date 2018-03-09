@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from mynewsfeatures import getarticlewords, makematrix, showarticles, showfeatures, get_features
-import mynnmf
+from newsbeat.mynewsfeatures import getarticlewords, makematrix, showarticles, showfeatures, get_features
+from . import mynnmf
 import numpy as np
 
 
-def main():
+def run():
     # all_words: 记录单词在所有文章中被使用的次数(字典)
     # article_words: 单词在每篇文章中出现的次数(包含字典的列表)
     # article_titles: 文章标题列表
@@ -24,5 +24,3 @@ def main():
     # showarticles(article_titles, top_patterns, pattern_names, out='myarticles.txt')
 
 
-if __name__ == '__main__':
-    main()

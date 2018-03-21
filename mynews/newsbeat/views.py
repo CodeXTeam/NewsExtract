@@ -26,10 +26,22 @@ from django.views.generic import ListView
 # Create your views here.
 from django.http import HttpResponse
 from django_celery_results.models import TaskResult
+from django.views import generic
+from newsbeat.serializers import TaskResultSerializer
+
 
 def home(request):
     return HttpResponse('Home')
 
+
 class NewsListView(ListView):
-    model = TaskResult
-    fields = ['result',]
+    queryset = TaskResult.objects.all()
+    context_object_name = 'infos'
+    template_name = 'newsbeat/news/list.html'
+    pagniate_by = 5
+
+
+
+class NewsResultList(generic.ListAPIView):
+    queryset = TaskResult.objects.all()
+    serializer_class = TaskResultSerializer

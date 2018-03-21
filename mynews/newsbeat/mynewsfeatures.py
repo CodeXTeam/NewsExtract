@@ -240,7 +240,7 @@ def get_features(weight, feature, titles, wordvec):
         articles = {}
         for index, article in enumerate(flist[:toparticle_num], start=1):
             key = str(index)
-            articles[key] = '{}: {}'.format(article[0].encode('utf-8').deocde('utf-8'),
+            articles[key] = '{}: {}'.format(str(article[0]),
                                             article[1].encode('utf-8').decode('utf-8'))
         out[i]['related_articles'] = articles
         #out[feature_words] = articles

@@ -20,5 +20,6 @@ from newsbeat.views import home
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='home'),
-    url('^news/', include('newsbeat.urls', namespace='newsbeat', app_name='newsbeat'))
+    url(r'^news/', include('newsbeat.urls')),
+    # url('^news/', include('newsbeat.urls', namespace='newsbeat', app_name='newsbeat'))
 ]

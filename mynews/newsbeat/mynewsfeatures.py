@@ -217,7 +217,7 @@ def get_features1(weight, feature, titles, wordvec):
 
         # 打印权重最高的10个词
         topwords_num = 10
-        words = [str(s[1]) for s in slist[:topwords_num]]
+        words = [s.encode('utf-8').decode() for s in slist[:topwords_num]]
         feature_words = ','.join(words)
         out[i]['feature'] = feature_words
         
@@ -239,7 +239,8 @@ def get_features1(weight, feature, titles, wordvec):
         articles = {}
         for index, article in enumerate(flist[:toparticle_num], start=1):
             key = str(index)
-            articles[key] = '{}: {}'.format(article[0], str(article[1]))
+            articles[key] = '{}: {}'.format(article[0].encode('utf-8').deocde('utf-8'),
+                                            article[1].encode('utf-8').decode('utf-8'))
         # out[i]['related_articles'] = articles
         out[feature_words] = articles
         #topic_sum = '<br/ >'.join((feature_words, *articles.values()))

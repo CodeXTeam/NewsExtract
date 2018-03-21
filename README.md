@@ -13,21 +13,39 @@ packages:
 
 on Ubuntu16.04
 
-## get start
+## 目录
 
-`git clone https://github.com/CodeXTeam/NewsExtract.git`
+* [开始](#开始)
+  * [clone项目](#clone项目)
+  * [安装项目依赖](#安装项目依赖)
+  * [配置setttings](#配置settings)
+  * [运行](#初次运行)
+* [访问页面](#访问页面)
+* [进一步](#进一步)
 
-- `cd mynews`
+## 开始
 
- NewsExtract/mynews是mynews项目根目录
+### clone项目
 
-- `pipenv install`安装项目依赖
+```
+git clone https://github.com/CodeXTeam/NewsExtract.git
+```
+
+`cd mynews`
+
+`NewsExtract/mynews`是项目根目录
+
+### 安装项目依赖
+
+`pipenv install`
 
 `pipenv`用法请参考[Pipenv](https://github.com/cgDeepLearn/LinuxSetups/blob/master/docs/python-lib/Pipenv.md)
 
-- 配置NewsExtract/mynews/mynews.settings.py
+### 配置settings
 
-配置数据库和celery， ALLOWED_HOST修改成你的
+`NewsExtract/mynews/mynews.settings.py`
+
+- 配置数据库和celery， ALLOWED_HOST修改成你的
 
 ```conf
 from celery.schedules import crontab
@@ -49,16 +67,16 @@ CELERY_BEAT_SCHEDULE = {
 }
 ```
 
-- 初次运行
+### 初次运行
 
-初始化(项目根目录执行),没有激活环境请键入`pipenv shell`
+- 初始化(项目根目录NewsExtract/mynews执行),没有激活环境请键入`pipenv shell`
 
 ```shell
 python manage.py migrate
 python manage.py createsuperuser
 ```
 
-依次在根目录(NewsExtract/mynews)下运行django和celery(开三个终端)：
+- 依次在根目录(NewsExtract/mynews)下运行django和celery(开三个终端)：
 
 ```python
 python manage.py runserver 0.0.0.0:8000 # t1
@@ -66,7 +84,7 @@ celery -A mynews worker -l info  # t2 celery worker
 celery -A mynews beat -l info  #  t3 celery beat
 ```
 
-then go get it
+- then go get it
 
 如果你想在现在的时间执行定时任务,请修改settings.py中的shedule时间
 
@@ -83,12 +101,14 @@ then go get it
 
     ![t3](docs/t3.png)
 
-news的因式分解可能需要几分钟到十几分钟，请耐心等待
+- news的非负因式矩阵分解可能需要几分钟到十几分钟，请耐心等待
 
-- 访问页面
+## 访问页面
 
 浏览器键入`localhost:8000/` 显示Home  (localhost可以换成你服务器ip)
-键入`localhost:8000/news` 显示如下json数据(JsonHandle插件显示)
+
+键入`localhost:8000/news/` 显示如下api
+
 ![news](docs/news_topic.png)
 
 访问`localhost:8000/admin`·，输入之前`createsuperuser`的用户密码,在`DjangoCeleryResults`下可以看到`TaskResult`

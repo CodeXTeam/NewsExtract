@@ -52,6 +52,6 @@ class TaskResultDetail(generics.RetrieveAPIView):
     serializer_class = TaskResultSerializer
 
 
-class TaskResultViewSet(viewsets.ModelViewSet):
+class TaskResultViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = TaskResult.objects.all()
     serializer_class = TaskResultSerializer

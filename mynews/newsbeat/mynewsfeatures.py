@@ -148,7 +148,7 @@ def showarticles(titles, toppatterns, patternnames, out='myarticles.txt'):
     outfile.close()
 
 
-def get_features(weight, feature, titles, wordvec):
+def get_features1(weight, feature, titles, wordvec):
     """显示特征"""
     out = []  # 返回结果
     pc, wc = np.shape(feature)  # pc 特征数，wc 词向量维数
@@ -194,8 +194,8 @@ def get_features(weight, feature, titles, wordvec):
     # Return the pattern names for later use
     return out
 
-def get_features1(weight, feature, titles, wordvec):
-    """返回字符串给django -html"""
+def get_features(weight, feature, titles, wordvec):
+    """返回json字典给django -html"""
     # out = {}  # 返回结果
     out = {}
     out_str = []
@@ -219,6 +219,7 @@ def get_features1(weight, feature, titles, wordvec):
         topwords_num = 10
         words = [s.encode('utf-8').decode() for s in slist[:topwords_num]]
         feature_words = ','.join(words)
+        out[i] = {}
         out[i]['feature'] = feature_words
         
 
@@ -241,8 +242,8 @@ def get_features1(weight, feature, titles, wordvec):
             key = str(index)
             articles[key] = '{}: {}'.format(article[0].encode('utf-8').deocde('utf-8'),
                                             article[1].encode('utf-8').decode('utf-8'))
-        # out[i]['related_articles'] = articles
-        out[feature_words] = articles
+        out[i]['related_articles'] = articles
+        #out[feature_words] = articles
         #topic_sum = '<br/ >'.join((feature_words, *articles.values()))
         #out_str.append(topic_sum)
     

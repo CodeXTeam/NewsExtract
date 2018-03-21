@@ -26,7 +26,7 @@ from django.views.generic import ListView
 # Create your views here.
 from django.http import HttpResponse
 from django_celery_results.models import TaskResult
-from django.views import generic
+from rest_framework import generics
 from newsbeat.serializers import TaskResultSerializer
 
 
@@ -42,6 +42,11 @@ class NewsListView(ListView):
 
 
 
-class NewsResultList(generic.ListAPIView):
+class TaskResultList(generics.ListAPIView):
+    queryset = TaskResult.objects.all()
+    serializer_class = TaskResultSerializer
+
+
+class TaskResultDetail(generics.RetrieveAPIView):
     queryset = TaskResult.objects.all()
     serializer_class = TaskResultSerializer

@@ -31,7 +31,5 @@ def home(request):
     return HttpResponse('Home')
 
 class NewsListView(ListView):
-    queryset = TaskResult.objects.all()
-    context_object_name = 'infos'
-    template_name = 'newsbeat/news/list.html'
-    pagniate_by = 5
+    model = TaskResult
+    fields = ['result',]

@@ -219,8 +219,9 @@ def get_features(weight, feature, titles, wordvec):
         topwords_num = 10
         words = [s[1].encode('utf-8').decode() for s in slist[:topwords_num]]
         feature_words = ','.join(words)
-        out[i] = {}
-        out[i]['feature'] = feature_words
+        index = str(i)
+        out[index] = {}
+        out[index]['feature'] = feature_words
         
 
         patternnames.append(words)
@@ -238,11 +239,11 @@ def get_features(weight, feature, titles, wordvec):
         # Show the top 5 articles
         toparticle_num = 5
         articles = {}
-        for index, article in enumerate(flist[:toparticle_num], start=1):
-            key = str(index)
+        for num, article in enumerate(flist[:toparticle_num], start=1):
+            key = str(num)
             articles[key] = '{}: {}'.format(str(article[0]),
                                             article[1].encode('utf-8').decode('utf-8'))
-        out[i]['related_articles'] = articles
+        out[index]['related_articles'] = articles
         #out[feature_words] = articles
         #topic_sum = '<br/ >'.join((feature_words, *articles.values()))
         #out_str.append(topic_sum)

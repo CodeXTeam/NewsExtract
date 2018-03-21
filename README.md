@@ -1,15 +1,17 @@
 # NewsExtract
 
 Extract News of main streams of China.
+中文新闻topic提取
 
 packages:
-
+- python=3.6
 - celery=4.0.2
 - django=1.11.2
-- numpy
-- feedparser
-- django-celery-results
-- redis
+- numpy=1.14.2
+- feedparser=5.2.1
+- django-celery-results=1.0.1
+- redis=2.10.6
+- djangorestframework=3.7.7
 
 on Ubuntu16.04
 

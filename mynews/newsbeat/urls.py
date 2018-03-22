@@ -6,7 +6,8 @@ router = DefaultRouter()
 router.register(r'taskresults', views.TaskResultViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls))
+    url(r'^', include(router.urls)),
+    url(r'^list/$', views.list, name='result-list'),
 ]
 
 

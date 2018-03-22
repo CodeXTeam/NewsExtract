@@ -40,9 +40,14 @@ class NewsListView(ListView):
     template_name = 'newsbeat/news/list.html'
     pagniate_by = 5
 
+def list(request):
+    results= TaskResult.objects.all()
+    for res in results:
+        res.result = eval(res.result)
+    return render(request,
+                  'blog/post/index.html', context={'results_list': results})
 
-
-class TaskResultList(generics.ListAPIView):
+ TaskResultList(generics.ListAPIView):
     queryset = TaskResult.objects.all()
     serializer_class = TaskResultSerializer
 

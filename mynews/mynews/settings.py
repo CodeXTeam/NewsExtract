@@ -138,7 +138,7 @@ CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERY_BEAT_SCHEDULE = {
     'task_news': {
         'task': 'newsbeat.tasks.task_news',
-        'schedule': crontab(minute='53', hour='8-22/1')
+        'schedule': crontab(minute='4', hour='14') # 每天hour点minute分执行一次
     }
 }
 

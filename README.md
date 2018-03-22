@@ -15,6 +15,8 @@ packages:
 
 on Ubuntu16.04
 
+![news](docs/news_topic.png)
+
 ## 目录
 
 * [开始](#开始)
@@ -107,13 +109,27 @@ celery -A mynews beat -l info  #  t3 celery beat
 
 ## 访问页面
 
+### 访问主页
+
 浏览器键入`localhost:8000/` 显示Home  (localhost可以换成你服务器ip)
 
-键入`localhost:8000/news/` 显示如下api
+### 查询API
 
-![news](docs/news_topic.png)
+- 访问`localhost:8000/news`,显示api根目录
 
-访问`localhost:8000/admin`·，输入之前`createsuperuser`的用户密码,在`DjangoCeleryResults`下可以看到`TaskResult`
+![api-root](docs/api-root.png)
+
+- 点击具体的某个任务:
+
+![task-result-instance](docs/task-result-instance.png)
+
+- 查看某天任务的详情页面
+
+浏览器访问 `localhost:8000/2018/3/21/`
+
+![news-feature](docs/news-feature.png)
+
+注: 访问`localhost:8000/admin`，输入之前`createsuperuser`的用户密码,在`DjangoCeleryResults`下可以看到`TaskResult`
 点击进去即可查看任务执行情况
 
 ## 进一步

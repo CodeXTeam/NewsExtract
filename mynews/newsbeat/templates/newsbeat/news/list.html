@@ -1,12 +1,18 @@
 <html>
 <body>
 
-    {% for info in results %}
+    {% for info in infos %}
     <div>
         <br/>
-        {{ info.result }}
+        {% for index, topic in info.items %}
+        <div>
+            {{ topic.feature }}
+                <p>{{ topic.related_articles }}</p>
+        {% endfor %}
+        </div>
     </div>
     <br/ >
     {% endfor %}
 </body>
 </html>
+

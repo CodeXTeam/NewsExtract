@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
@@ -40,14 +40,37 @@ class NewsListView(ListView):
     template_name = 'newsbeat/news/list.html'
     pagniate_by = 5
 
-def list(request):
+def news_list(request):
     results= TaskResult.objects.all()
+    infos = []
     for res in results:
-        res.result = eval(res.result)
+        info = eval(res.result)
+        infos.append(info)
+    
     return render(request,
-                  'blog/post/index.html', context={'results_list': results})
+                   'newsbeat/news/list.html', context={'infos': infos})
 
- TaskResultList(generics.ListAPIView):
+
+def news_detail(request, year, month, day):
+    res = get_object_or_404(
+        TaskResult, status='SUCCESS',
+        date_done__year=year, date_done__month=month,date_done__day=day)
+    
+    taskid = res.task_id
+    result = eval(res.result)
+    date_done = res.date_done
+    return render(
+        request, 'newsbeat/news/detail.html',
+        context={
+            'taskid': taskid,
+            'result': result,
+            'date_done': date_done
+        }
+    )
+    
+    
+
+class TaskResultList(generics.ListAPIView):
     queryset = TaskResult.objects.all()
     serializer_class = TaskResultSerializer
 

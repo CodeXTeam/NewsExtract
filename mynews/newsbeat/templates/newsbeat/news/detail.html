@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>新闻摘要</title>
+</head>
+<body>
+<div id="header">
+<h2 align="center">{{ date_done }} 新闻摘要</h2>
+</div>
+    <div>
+        <span>完成日期: {{ date_done }} --- 任务ID: {{ taskid }}</span>
+        <div>
+            {% for index, topic in result.items %}
+            <h3>主题特征{{index}} - {{ topic.feature }}</h3>
+            <div>
+                <span>主题相关文章: </span>
+                {{ topic.related_articles }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

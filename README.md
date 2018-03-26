@@ -88,6 +88,8 @@ celery -A mynews worker -l info  # t2 celery worker
 celery -A mynews beat -l info  #  t3 celery beat
 ```
 
+`Celery` 安装与使用请参考[Celery定时任务](https://github.com/cgDeepLearn/LinuxSetups/blob/master/docs/python-lib/Celery.md)
+
 - then go get it
 
 如果你想在现在的时间执行定时任务,请修改settings.py中的shedule时间

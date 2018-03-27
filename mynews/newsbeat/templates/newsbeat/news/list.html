@@ -1,18 +1,35 @@
 <html>
+<head>
+    <title>新闻列表</title>
+</head>
 <body>
 
-    {% for info in infos %}
-    <div>
-        <br/>
-        {% for index, topic in info.items %}
-        <div>
-            {{ topic.feature }}
-                <p>{{ topic.related_articles }}</p>
-        {% endfor %}
-        </div>
-    </div>
-    <br/ >
-    {% endfor %}
+<h1 align="center">新闻列表, 点击查看详情</h1>
+
+{% for info in infos %}
+<div>
+    <h3 align="center"><a href="{% url 'news:news-detail' info.date_done|date:'Y' info.date_done|date:'n' info.date_done|date:'d' %}">
+        {{ info.date_done|date:'Y-m-d' }}
+    </a>
+    </h3>
+</div>
+{% endfor %}
+
+{% if is_paginated %}
+<div class="pagination center-block">
+    <span>共{{ page_obj.paginator.num_pages }}页</span>
+    <span id="paging" class="step-links" style="display: block;text-align: center">
+        {% if page_obj.has_previous %}
+        <span><a href="?page={{ page_obj.previous_page_number }}">上一页</a></span>
+        {% endif %}
+        <span class="active">{{ page_obj.number }}</span>
+        {% if page_obj.has_next %}
+        <span><a href="?page={{ page_obj.next_page_number }}">下一页</a></span>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+</div>
 </body>
 </html>
 

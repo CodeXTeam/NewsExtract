@@ -7,9 +7,9 @@ router.register(r'taskresults', views.TaskResultViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^list/$', views.news_list, name='news-list'),
+    url(r'^list/$', views.NewsListView.as_view(), name='news-list'),
     url(
-        r"^(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/$",
+        r"^(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})/$",
         views.news_detail, name='news-detail'),
 ]
 

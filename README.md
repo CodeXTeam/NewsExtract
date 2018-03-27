@@ -12,6 +12,8 @@ packages:
 - django-celery-results=1.0.1
 - redis=2.10.6
 - djangorestframework=3.7.7
+- scipy=1.0.1
+- scikit-learn=0.19.1
 
 on Ubuntu16.04
 
@@ -107,7 +109,8 @@ celery -A mynews beat -l info  #  t3 celery beat
 
     ![t3](docs/t3.png)
 
-- news的非负因式矩阵分解可能需要几分钟到十几分钟，请耐心等待
+~~news的非负因式矩阵分解可能需要几分钟到十几分钟，请耐心等待~~
+现在已经更换sklearn里的NMF模型来做矩阵分解，速度更快
 
 ## 访问页面
 
@@ -138,3 +141,5 @@ celery -A mynews beat -l info  #  t3 celery beat
 
 - 页面优化
 - 算法优化
+  - 更换自己的`mynnmf`为`sklearn`里的NMF 来做矩阵分解 --done(2018/3/27)
+  - 丰富新闻源(feed_list)

@@ -34,14 +34,8 @@ def home(request):
     return HttpResponse('Home')
 
 
-class NewsListView(ListView):
-    queryset = TaskResult.objects.all()
-    context_object_name = 'infos'
-    template_name = 'newsbeat/news/list.html'
-    pagniate_by = 5
-
 def news_list(request):
-    results= TaskResult.objects.all()
+    results = TaskResult.objects.all()
     infos = []
     for res in results:
         info = eval(res.result)
@@ -49,6 +43,13 @@ def news_list(request):
     
     return render(request,
                    'newsbeat/news/list.html', context={'infos': infos})
+
+
+class NewsListView(ListView):
+    template_name = 'newsbeat/news/list.html'
+    paginate_by = 10
+    context_object_name = "infos"
+    queryset = TaskResult.objects.all().order_by('-date_done')
 
 
 def news_detail(request, year, month, day):

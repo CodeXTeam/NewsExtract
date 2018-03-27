@@ -14,7 +14,8 @@ django-celery-results = "*"
 jieba = "*"
 feedparser = "*"
 numpy = "*"
-pip = "*"
+scipy = "*"
+scikit-learn = "*"
 djangorestframework = "*"
 
 

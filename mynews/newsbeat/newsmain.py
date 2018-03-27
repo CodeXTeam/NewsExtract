@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from newsbeat.mynewsfeatures import getarticlewords, makematrix, showarticles, showfeatures, get_features
-from newsbeat import mynnmf
+# from newsbeat import mynnmf
 import numpy as np
+from sklearn.decomposition import NMF  # 使用sklearn
 
 
 def run():
@@ -16,7 +17,13 @@ def run():
 
     # news_matrics
     news_matrics = np.matrix(word_matrix) # 矩阵化
-    w, h = mynnmf.factorize(news_matrics, k=10, maxiter=20) # k是期望特征数
+
+    feature_num = 10  # 是个特征
+    model = NMF(n_components=10)  # 设有2个主题
+    w = model.fit_transform(news_matrics)
+    h = model.components_
+
+    #w, h = mynnmf.factorize(news_matrics, k=10, maxiter=20) # k是期望特征数, 使用乘法更新法则
 
     #top_patterns, pattern_names = showfeatures(w, h, article_titles, word_vec, out='myfeatures.txt')
     result = get_features(w, h, article_titles, word_vec)

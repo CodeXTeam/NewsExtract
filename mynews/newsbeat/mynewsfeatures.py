@@ -194,7 +194,7 @@ def get_features1(weight, feature, titles, wordvec):
     # Return the pattern names for later use
     return out
 
-def get_features(weight, feature, titles, wordvec):
+def get_features2(weight, feature, titles, wordvec):
     """返回json字典给django -html"""
     # out = {}  # 返回结果
     out = {}
@@ -248,6 +248,64 @@ def get_features(weight, feature, titles, wordvec):
         #topic_sum = '<br/ >'.join((feature_words, *articles.values()))
         #out_str.append(topic_sum)
     
+    # Return the pattern names for later use
+    # return '<br/ ><br />'.join(out_str)
+    return out
+
+
+def get_features(weight, feature, titles, wordvec):
+    """返回json数据给django -html
+    result:[{'index':0,
+            'pattern':['',''],
+            'related_articles':[{'weight':123, 'title':''}, {}]},
+             ...]
+    """
+    # out = []  # 返回结果
+    out = []
+    pc, wc = np.shape(feature)  # pc 特征数，wc 词向量维数
+    toppatterns = [[] for i in range(len(titles))]
+    patternnames = []
+
+    # 遍历所有特征
+    for i in range(pc):
+        # out.append({})  # 每个topic一个结果字典
+        # out[i]['id'] = i #每个结果的id
+
+        slist = []
+        # 构造一个包含单词及其权重数据的列表
+        for j in range(wc):
+            slist.append((feature[i, j], wordvec[j]))
+        # 将单词列表倒序排列
+        slist.sort(reverse=True)
+
+        # 打印权重最高的10个词
+        topwords_num = 10
+        pattern = [s[1] for s in slist[:topwords_num]]
+        index = str(i + 1)
+
+        # 构造一个针对该特征的文章列表
+        flist = []
+        for j, title in enumerate(titles):
+            # 加入文章及其权重数据
+            flist.append((weight[j, i], title))
+            toppatterns[j].append((weight[j, i], i, title))
+
+        # Reverse sort the list
+        flist.sort(reverse=True)
+
+        # Show the top 5 articles
+        toparticle_num = 5
+        related_articles = []
+        for article in flist[:toparticle_num]:
+            article_weight = str(article[0])
+            article_title = article[1]
+            related_articles.append({'weight': article_weight, 'title': article_title})
+
+        out.append({'index': index, 'pattern': pattern, 'related_articles': related_articles})
+        # out[feature_words] = articles
+        # topic_sum = '<br/ >'.join((feature_words, *articles.values()))
+        # out_str.append(topic_sum)
+
     # Return the pattern names for later use
     # return '<br/ ><br />'.join(out_str)
     return out

@@ -28,10 +28,11 @@ def factorize(vec, k=10, maxiter=50):
     # 以随机值初始化权重矩阵W(m x k 维)和特征矩阵H(k x n 维)
     m = np.shape(vec)[0]  # 数据矩阵vec行数
     n = np.shape(vec)[1]  # 数据矩阵vec列数
-    W = np.matrix([[random.random()
+    W = np.matrix([[np.random.random()
                     for j in range(k)]
                    for i in range(m)])  # (m, k)维
-    H = np.matrix([[random.random()
+    np.random.random()
+    H = np.matrix([[np.random.random()
                     for j in range(n)]
                    for i in range(k)])  # (k, n)维
 

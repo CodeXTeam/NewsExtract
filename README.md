@@ -14,6 +14,8 @@ packages:
 - djangorestframework=3.7.7
 - scipy=1.0.1
 - scikit-learn=0.19.1
+- django-calendarium=1.3.4
+
 
 on Ubuntu16.04
 
@@ -46,6 +48,39 @@ git clone https://github.com/CodeXTeam/NewsExtract.git
 `pipenv install`
 
 `pipenv`用法请参考[Pipenv](https://github.com/cgDeepLearn/LinuxSetups/blob/master/docs/python-lib/Pipenv.md)
+
+#### pipenv graph
+
+django-calendarium==1.3.4
+  - django [required: >=1.6, installed: 1.11.2]
+    - pytz [required: Any, installed: 2018.3]
+  - django-filer [required: Any, installed: 1.3.0]
+    - Django [required: <1.11.999,>=1.8, installed: 1.11.2]
+      - pytz [required: Any, installed: 2018.3]
+    - django-mptt [required: >=0.6,<0.9, installed: 0.8.7]
+    - django-polymorphic [required: >=0.7,<1.4, installed: 1.3]
+    - easy-thumbnails [required: >=2,<2.5, installed: 2.4.2]
+      - django [required: >=1.4.2, installed: 1.11.2]
+        - pytz [required: Any, installed: 2018.3]
+      - pillow [required: Any, installed: 5.0.0]
+    - Unidecode [required: >=0.04,<0.05, installed: 0.4.21]
+  - django-libs [required: Any, installed: 1.67.13]
+  - python-dateutil [required: Any, installed: 2.7.2]
+    - six [required: >=1.5, installed: 1.11.0]
+django-celery-results==1.0.1
+  - celery [required: <5.0,>=4.0, installed: 4.0.2]
+    - billiard [required: >=3.5.0.2,<3.6.0, installed: 3.5.0.3]
+    - kombu [required: <5.0,>=4.0.2, installed: 4.1.0]
+      - amqp [required: >=2.1.4,<3.0, installed: 2.2.2]
+        - vine [required: >=1.1.3, installed: 1.1.4]
+    - pytz [required: >dev, installed: 2018.3]
+djangorestframework==3.7.7
+feedparser==5.2.1
+jieba==0.39
+redis==2.10.6
+scikit-learn==0.19.1
+scipy==1.0.1
+  - numpy [required: >=1.8.2, installed: 1.14.2]
 
 ### 配置settings
 

@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ghxwc8!03y%1_5o#=ovn(g2*q2x8zh(=5v7on@ep38l#=)erhr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','.writeathink.cn']
 
@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_celery_results',
     'newsbeat',
-    
+    'filer',
+    'mptt',
+    'easy_thumbnails',
+    'calendarium',
     
 ]
 
@@ -123,18 +126,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
 
-from celery.schedules import crontab
+# calendarium settings
+CALENDARIUM_SHIFT_WEEKSTART = -1
+
+
 
 # Celery application definition
 # http://docs.celeryproject.org/en/v4.0.2/userguide/configuration.html
+from celery.schedules import crontab
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Shanghai'
+CELERY_TIMEZONE = TIME_ZONE  # 跟django时区一致都是上海
 CELERY_BEAT_SCHEDULE = {
     'task_news': {
         'task': 'newsbeat.tasks.task_news',

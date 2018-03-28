@@ -8,7 +8,7 @@
 
 {% for info in infos %}
 <div>
-    <h3 align="center"><a href="{% url 'news:news-detail' info.date_done|date:'Y' info.date_done|date:'n' info.date_done|date:'d' %}">
+    <h3 align="center"><a href="{% url 'news-detail' info.date_done|date:'Y' info.date_done|date:'n' info.date_done|date:'d' %}">
         {{ info.date_done|date:'Y-m-d' }}
     </a>
     </h3>

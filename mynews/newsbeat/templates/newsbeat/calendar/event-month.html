@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n calendarium_tags %}
+
+{% block main %}
+<h1>{{ date|date:"F Y" }}</h1>
+
+<form action="." method="post">
+    {% csrf_token %}
+    <input class="btn btn-default" type="submit" name="previous" value="{% trans "Previous" %}" />
+    <input class="btn btn-default" type="submit" name="next" value="{% trans "Next" %}" />
+    <input class="btn btn-default" type="submit" name="today" value="{% trans "Today" %}" />
+</form>
+<table class="table" id="calendar-month">
+    <tr>
+        <th></th>
+        {% for weekday in weekdays %}
+            <th>{{ weekday }}</th>
+        {% endfor %}
+    </tr>
+    {% for week in month %}
+        {% if week %}
+            <tr>
+                <td class="calendarium-week-link">{% trans "-" %}</td>
+                {% for day, occurrences, current in week %}
+                    <td class="{% if day == 0 %}calendarium-empty{% elif current %}calendarium-current{% else %}calendarium-day{% endif %}">
+                        <div class="calendarium-relative">
+                            {% if day != 0 %}
+                                <span class="calendarium-date">{{ day }}</span>
+
+
+
+                                    <a title="今日详情" href="{% url 'news-detail' date|date:'Y' date|date:'n' day %}">今日详情</a>
+
+                                <!--
+                                {% for occurrence in occurrences %}
+                                    <p class="alert" style="background-color: #{{ occurrence.event.category.color }}">
+                                        <a title="{{ occurrence }}" href="{% url "calendar_occurrence_detail" pk=occurrence.event.pk year=occurrence.start.year month=occurrence.start.month day=occurrence.start.day %}">{{ occurrence|truncatechars:22 }}</a>
+                                    </p>
+                                {% endfor %}
+                                -->
+                            {% endif %}
+                        </div>
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+
+{% endblock %}

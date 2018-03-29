@@ -1,7 +1,6 @@
 # NewsExtract
 
-Extract News of main streams of China.\
-中(英)文 feed源 topic提取 :smile:
+:relived: Extract News of main streams of China.中(英)文feed源topic提取 :smile:
 ---
 packages:
 - python=3.6
@@ -16,10 +15,7 @@ packages:
 - scikit-learn=0.19.1
 - django-calendarium=1.3.4
 
-
 on Ubuntu16.04
-
-![news](docs/news_topic.png)
 
 ## 目录
 
@@ -29,7 +25,15 @@ on Ubuntu16.04
   * [配置setttings](#配置settings)
   * [运行](#初次运行)
 * [访问页面](#访问页面)
+  * [访问主页](#访问主页) 
+  * [日历](#日历)
 * [进一步](#进一步)
+  * [页面优化](#页面优化)
+  * [算法优化](#算法优化)
+  * [模型优化](#模型优化)
+
+![news](docs/news_topic.png)
+
 
 ## 开始
 
@@ -169,7 +173,9 @@ celery -A mynews beat -l info  #  t3 celery beat
 
 ![news-feature](docs/news-feature.png)
 
-### 新添加的`calendar`
+### 日历 
+
+新添加的`calendar`
 
 - 为定时任务添加了日历功能
 

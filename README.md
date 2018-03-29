@@ -1,8 +1,8 @@
 # NewsExtract
 
-Extract News of main streams of China.
-中文新闻topic提取
-
+Extract News of main streams of China.\
+中(英)文 feed源 topic提取 :smile:
+---
 packages:
 - python=3.6
 - celery=4.0.2
@@ -165,16 +165,42 @@ celery -A mynews beat -l info  #  t3 celery beat
 
 - 查看某天任务的详情页面
 
-浏览器访问 `localhost:8000/2018/3/21/`
+浏览器访问 `localhost:8000/news/list` -- 点击某天详情页面`localhost:8000/news/2018-3-21/`
 
 ![news-feature](docs/news-feature.png)
+
+### 新添加的`calendar`
+
+- 为定时任务添加了日历功能
+
+访问`localhost:8000/news/calendar/`, 显示如下
+
+![calendar-month](docs/calendar_month.png)
+
+点击单日详情, 显示如下:
+
+![calendar-day](docs/calendar_day.png)
 
 注: 访问`localhost:8000/admin`，输入之前`createsuperuser`的用户密码,在`DjangoCeleryResults`下可以看到`TaskResult`
 点击进去即可查看任务执行情况
 
 ## 进一步
 
-- 页面优化
-- 算法优化
-  - 更换自己的`mynnmf`为`sklearn`里的NMF 来做矩阵分解 --done(2018/3/27)
-  - 丰富新闻源(feed_list)
+### 页面优化
+
+  - `calendar`页面显示任务
+    - [✘] 当日有任务才显示点击详情
+    - [✘] 每天支持显示多个任务
+    - [✘] 成功失败标注
+
+### 算法优化
+
+  - [✔]更换自己的`mynnmf`为`sklearn`里的`NMF`来做矩阵分解 --done(2018/3/27)
+
+### 模型优化
+
+  - [✘] 扩展或更换新闻源(feed_list)
+
+      可以在`models.py`添加一个feedlist Model，注册到admin页面,这样可以对`feed`源进行增删改查.\
+      那么读取feed list需更换为django的ORM。这样feed源具有更强的拓展性。\
+      (如果有兴趣可以着手添加修改，完成请发起一个`pull request`~^_^~)

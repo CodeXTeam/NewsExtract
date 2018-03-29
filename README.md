@@ -196,6 +196,7 @@ celery -A mynews beat -l info  #  t3 celery beat
 ### 页面优化
 
   - `calendar`页面显示任务
+    - [✘] 详情页面添加返回日历链接
     - [✘] 当日有任务才显示点击详情
     - [✘] 每天支持显示多个任务
     - [✘] 成功失败标注

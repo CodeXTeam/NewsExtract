@@ -32,7 +32,7 @@ on Ubuntu16.04
   * [算法优化](#算法优化)
   * [模型优化](#模型优化)
 
-![news](docs/news_topic.png)
+![news](../docs/news_topic.png)
 
 
 ## 开始
@@ -139,15 +139,15 @@ celery -A mynews beat -l info  #  t3 celery beat
 - 三个终端显示结果示例
   - 终端1
 
-    ![t1](docs/t1.png)
+    ![t1](../docs/t1.png)
 
   - 终端2
 
-    ![t2](docs/t2.png)
+    ![t2](../docs/t2.png)
 
   - 终端3
 
-    ![t3](docs/t3.png)
+    ![t3](../docs/t3.png)
 
 ~~news的非负因式矩阵分解可能需要几分钟到十几分钟，请耐心等待~~
 现在已经更换sklearn里的NMF模型来做矩阵分解，速度更快
@@ -162,17 +162,17 @@ celery -A mynews beat -l info  #  t3 celery beat
 
 - 访问`localhost:8000/news`,显示api根目录
 
-![api-root](docs/api-root.png)
+![api-root](../docs/api-root.png)
 
 - 点击具体的某个任务:
 
-![task-result-instance](docs/task-result-instance.png)
+![task-result-instance](../docs/task-result-instance.png)
 
 - 查看某天任务的详情页面
 
 浏览器访问 `localhost:8000/news/list` -- 点击某天详情页面`localhost:8000/news/2018-3-21/`
 
-![news-feature](docs/news-feature.png)
+![news-feature](../docs/news-feature.png)
 
 ### 日历 
 
@@ -182,11 +182,11 @@ celery -A mynews beat -l info  #  t3 celery beat
 
 访问`localhost:8000/news/calendar/`, 显示如下
 
-![calendar-month](docs/calendar_month.png)
+![calendar-month](../docs/calendar_month.png)
 
 点击单日详情, 显示如下:
 
-![calendar-day](docs/calendar_day.png)
+![calendar-day](../docs/calendar_day.png)
 
 注: 访问`localhost:8000/admin`，输入之前`createsuperuser`的用户密码,在`DjangoCeleryResults`下可以看到`TaskResult`
 点击进去即可查看任务执行情况

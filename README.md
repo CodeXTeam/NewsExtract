@@ -1,6 +1,6 @@
 # NewsExtract
 
-:relived: Extract News of main streams of China.中(英)文feed源topic提取 :smile:
+:relieved: Extract News of main streams of China.中(英)文feed源topic提取 :smile:
 ---
 packages:
 - python=3.6
@@ -119,6 +119,7 @@ CELERY_BEAT_SCHEDULE = {
 ```shell
 python manage.py migrate
 python manage.py createsuperuser
+python manage.py collectstatic
 ```
 
 - 依次在根目录(NewsExtract/mynews)下运行django和celery(开三个终端)：

@@ -146,7 +146,7 @@ CELERY_TIMEZONE = TIME_ZONE  # 跟django时区一致都是上海
 CELERY_BEAT_SCHEDULE = {
     'task_news': {
         'task': 'newsbeat.tasks.task_news',
-        'schedule': crontab(minute='4', hour='14') # 每天hour点minute分执行一次
+        'schedule': crontab(minute='4', hour='12') # 每天hour点minute分执行一次
     }
 }
 

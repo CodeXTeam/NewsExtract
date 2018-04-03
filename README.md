@@ -195,19 +195,19 @@ celery -A mynews beat -l info  #  t3 celery beat
 
 ### 页面优化
 
-  - `calendar`页面显示任务
-    - [✘] 详情页面添加返回日历链接
-    - [✘] 当日有任务才显示点击详情
-    - [✘] 每天支持显示多个任务
-    - [✘] 成功失败标注
+- `calendar`页面显示任务
+  - [ ] 详情页面添加返回日历链接
+  - [ ] 当日有任务才显示点击详情
+  - [ ] 每天支持显示多个任务
+  - [ ] 成功失败标注
 
 ### 算法优化
 
-  - [✔]更换自己的`mynnmf`为`sklearn`里的`NMF`来做矩阵分解 --done(2018/3/27)
+- [x] 更换自己的`mynnmf`为`sklearn`里的`NMF`来做矩阵分解 --done(2018/3/27)
 
 ### 模型优化
 
-  - [✘] 扩展或更换新闻源(feed_list)
+- [x] 扩展或更换新闻源(feed_list)
 
       可以在`models.py`添加一个feedlist Model，注册到admin页面,这样可以对`feed`源进行增删改查.\
       那么读取feed list需更换为django的ORM。这样feed源具有更强的拓展性。\

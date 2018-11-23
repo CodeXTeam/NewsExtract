@@ -19,29 +19,32 @@ packages:
 
 on Ubuntu16.04
 
+---
+
 ## 目录
 
-* [开始](#开始)
-  * [clone项目](#clone项目)
-  * [安装项目依赖](#安装项目依赖)
-  * [配置setttings](#配置settings)
-  * [运行](#初次运行)
-* [访问页面](#访问页面)
-  * [访问主页](#访问主页) 
-  * [日历](#日历)
-* [进一步](#进一步)
-  * [页面优化](#页面优化)
-  * [算法优化](#算法优化)
-  * [模型优化](#模型优化)
+- [开始](#开始)
+  - [clone项目](#clone项目)
+  - [安装项目依赖](#安装项目依赖)
+  - [配置setttings](#配置settings)
+  - [运行](#初次运行)
+- [访问页面](#访问页面)
+  - [访问主页](#访问主页) 
+  - [日历](#日历)
+- [进一步](#进一步)
+  - [页面优化](#页面优化)
+  - [算法优化](#算法优化)
+  - [模型优化](#模型优化)
+
+---
 
 ![news](../docs/news_topic.png)
-
 
 ## 开始
 
 ### clone项目
 
-```
+```git
 git clone https://github.com/CodeXTeam/NewsExtract.git
 ```
 
@@ -57,6 +60,7 @@ git clone https://github.com/CodeXTeam/NewsExtract.git
 
 #### pipenv graph
 
+```pip
 django-calendarium==1.3.4
   - django [required: >=1.6, installed: 1.11.2]
     - pytz [required: Any, installed: 2018.3]
@@ -87,6 +91,7 @@ redis==2.10.6
 scikit-learn==0.19.1
 scipy==1.0.1
   - numpy [required: >=1.8.2, installed: 1.14.2]
+```
 
 ### 配置settings
 
